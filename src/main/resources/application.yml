@@ -1,0 +1,14 @@
+server:
+  port: 9001
+
+spring:
+  application:
+      name: demo-spring-webflux
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/demo2
+      database: demo2
+
+logging:
+  level:
+    com.yong: DEBUG
