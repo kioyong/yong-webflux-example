@@ -16,8 +16,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ba
 @Component
 public class ErrorHandler {
 
-    public Mono<ServerResponse> error(final Throwable error) {
-//        log.error("error handler", error);
+    public Mono<ServerResponse> error(Throwable error) {
         log.error("error handling : {}",error.getMessage());
         return badRequest().body(Mono.just(new ErrorResponse(error.getMessage())), ErrorResponse.class);
     }

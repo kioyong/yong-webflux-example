@@ -2,7 +2,6 @@ package com.yong.demo.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
@@ -12,7 +11,8 @@ import java.util.List;
  */
 @Data
 public class Mark {
-    private String id,title;
+    @Id private String id;
+    private String title;
     private boolean isActivity,isLocked;
     private List<Item> item;
 
