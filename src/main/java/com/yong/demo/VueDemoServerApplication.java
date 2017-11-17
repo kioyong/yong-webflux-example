@@ -28,11 +28,11 @@ public class VueDemoServerApplication {
 
     @Bean
     public RouterFunction<ServerResponse> routerFunction(MarkHandler echoHandler) {
-        return route(GET("/helloWorld"), echoHandler::helloWorld)
-                .andRoute(GET("/todo/{id}"), echoHandler::findOneTodo)
-                .andRoute(GET("/todo"), echoHandler::findAllTodo)
-                .andRoute(POST("/todo"), echoHandler::addTodo)
-                .andRoute(PUT("/todo"), echoHandler::updateTodo)
+        return route(GET("/hello"), echoHandler::helloWorld)
+                .andRoute(GET("/mark/{id}"), echoHandler::findOneMark)
+                .andRoute(GET("/mark"), echoHandler::findAllMark)
+                .andRoute(POST("/mark"), echoHandler::addMark)
+                .andRoute(PUT("/mark"), echoHandler::updateMark)
                 ;
     }
 }

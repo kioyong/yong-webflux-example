@@ -9,10 +9,8 @@ import lombok.Data;
 
 @Data
 public class Item {
-    private String id;
-    private String text;
-    private boolean isActivity;
-    private boolean isChecked;
+    private String id,text;
+    private boolean isActivity,isChecked;
 
 
 }
