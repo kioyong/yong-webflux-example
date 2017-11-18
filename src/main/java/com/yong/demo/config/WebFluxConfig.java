@@ -9,9 +9,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
-import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 /**
@@ -24,7 +22,8 @@ public class WebFluxConfig implements WebFluxConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*").allowedHeaders("*");
+
     }
 
 
@@ -35,6 +34,7 @@ public class WebFluxConfig implements WebFluxConfigurer {
                 .andRoute(GET("/mark"), echoHandler::findAllMark)
                 .andRoute(POST("/mark"), echoHandler::addMark)
                 .andRoute(PUT("/mark"), echoHandler::updateMark)
+                .andRoute(OPTIONS("/**"),echoHandler::optionsRequest)
                 ;
     }
 }

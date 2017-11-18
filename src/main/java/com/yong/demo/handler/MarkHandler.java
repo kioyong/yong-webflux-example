@@ -10,8 +10,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 /**
@@ -32,7 +34,8 @@ public class MarkHandler {
     }
 
     public Mono<ServerResponse> findAllMark(final ServerRequest request) {
-        return ok().body(repository.findAll(new Sort(Sort.Direction.ASC,"id")), Mark.class);
+        return ok().body(repository.findAll(new Sort(Sort.Direction.ASC, "id"))
+                /*.take(3)*/,Mark.class);
     }
 
     public Mono<ServerResponse> addMark(final ServerRequest request) {
@@ -55,13 +58,16 @@ public class MarkHandler {
     }
 
     Mono<ServerResponse> serverResponse(Mono<Mark> markMono) {
-        return markMono.flatMap(mark ->
-                ok().body(Mono.just(mark), Mark.class));
+        return ok().body(markMono, Mark.class);
     }
 
     public Mono<ServerResponse> helloWorld(final ServerRequest request) {
         return ok().body(Mono.just("helloWorld"), String.class);
     }
 
+
+    public Mono<ServerResponse> optionsRequest(ServerRequest request) {
+        return ok().contentType(APPLICATION_JSON).build();
+    }
 
 }
