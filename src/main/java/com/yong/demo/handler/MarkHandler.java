@@ -2,6 +2,7 @@ package com.yong.demo.handler;
 
 import com.yong.demo.model.Mark;
 import com.yong.demo.repository.MarkRepository;
+import com.yong.demo.service.MarkService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
@@ -27,6 +28,7 @@ public class MarkHandler {
 
     private final MarkRepository repository;
     private final ErrorHandler errorHandler;
+//    private final MarkService markService;
 
     public Mono<ServerResponse> findOneMark(final ServerRequest request) {
         return repository.findById(request.pathVariable("id"))
@@ -34,8 +36,9 @@ public class MarkHandler {
     }
 
     public Mono<ServerResponse> findAllMark(final ServerRequest request) {
-        return ok().body(repository.findAll(new Sort(Sort.Direction.ASC, "id"))
-                /*.take(3)*/,Mark.class);
+//        return ok().body(repository.findAll(new Sort(Sort.Direction.ASC, "id"))
+//                /*.take(3)*/,Mark.class);
+        return ok().body(repository.findAllActivityItems(),Mark.class);
     }
 
     public Mono<ServerResponse> addMark(final ServerRequest request) {

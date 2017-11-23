@@ -11,6 +11,6 @@ import reactor.core.publisher.Flux;
  * @date 2017/11/14
  */
 @Repository
-public interface MarkRepository extends ReactiveMongoRepository<Mark,String> {
+public interface MarkRepository extends ReactiveMongoRepository<Mark,String>, MarkRepositoryCustom  {
     Flux<Mark> findAll(Sort sort);
 }
